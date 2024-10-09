@@ -14,10 +14,11 @@ let api;
   api = await activate();
 })();
 
-// Serve static files from the 'public' directory
+// Handle __dirname and __filename in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoint to get spacePledged data
@@ -29,6 +30,11 @@ app.get('/api/space-pledge', async (req, res) => {
     console.error('Error fetching space pledged:', error);
     res.status(500).json({ error: 'Failed to fetch space pledge' });
   }
+});
+
+// Serve the index.html file for the root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port, () => {

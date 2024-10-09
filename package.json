@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "@autonomys/auto-consensus": "^0.6.5",
     "@autonomys/auto-utils": "^0.6.5",
@@ -7,5 +6,13 @@
   },
   "scripts": {
     "start": "node server.js"
-  }
+  },
+  "name": "space-race-tracker",
+  "version": "1.0.0",
+  "description": "Welcome to the Autonomys Network Space Race Tracker.",
+  "main": "server.js",
+  "keywords": [],
+  "type": "module",
+  "author": "",
+  "license": "ISC"
 }

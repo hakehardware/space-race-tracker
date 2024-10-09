@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+  }
+  
+  body {
+    background-color: #ddeeff; /* Fallback color */
+    overflow: hidden;
+  }
+  
+  .rocket-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to top, #4a6fa5, #6ca0dc, #000); /* Ground to space */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .rocket {
+    position: absolute;
+    bottom: -32px; /* Start at the launch pad */
+    width: 50px;
+    height: 100px;
+    background-image: url('rocket.png'); /* Replace with your rocket image */
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(0); /* Start position */
+    transition: transform 1s ease;
+    z-index: 4;
+  }
+  
+  .launch-pad {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 20px;
+    background-color: #333;
+    z-index: 4;
+  }
+  
+  /* Green ground (Earth) with rolling hills */
+  .ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh; /* Bottom 10% of the screen */
+    background-color: #3c9a35; /* Green color for the grass */
+    z-index: 3; /* Ensure it is above clouds and other elements */
+  }
+  
+  .hill {
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+    height: 80px;
+    background-color: #3c9a35; /* Same green color */
+    border-radius: 50%; /* Creates the curved, hill-like effect */
+  }
+  
+  .hill-1 {
+    left: 20%;
+    width: 200px;
+    height: 100px;
+  }
+  
+  .hill-2 {
+    left: 50%;
+    width: 250px;
+    height: 120px;
+  }
+  
+  .hill-3 {
+    right: 15%;
+    width: 180px;
+    height: 90px;
+  }
+  
+  /* Twinkling stars */
+  @keyframes twinkling {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+  }
+  
+  .stars {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 1;
+  }
+  
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkling 1.5s infinite ease-in-out;
+  }
+  
+  .star:nth-child(odd) {
+    animation-duration: 2.5s;
+  }
+  
+  .star:nth-child(even) {
+    animation-duration: 3s;
+  }
+  
+  /* General cloud settings for each layer */
+  .cloud-layer {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    background: url('./clouds.png') repeat-x;
+    background-size: contain;
+    z-index: 2; /* Ensure clouds are above other content */
+    opacity: 0.9; /* Ensure clouds are visible but slightly transparent */
+  }
+  
+  /* Cloud movement animation */
+  @keyframes driftClouds {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, 5px); } /* Drift left with slight vertical movement */
+    100% { transform: translate(20px, -5px); } /* Drift right with slight vertical movement */
+  }
+  
+  /* Different cloud layers with varied positions and animation speeds */
+  .cloud-layer-1 {
+    top: 48%; /* Slightly above center */
+    animation: driftClouds 25s ease-in-out infinite alternate;
+    transform: translateY(-5px); /* Slight upward shift for stagger */
+    z-index: 5
+  }
+  
+  .cloud-layer-2 {
+    top: 50%; /* Centered */
+    animation: driftClouds 30s ease-in-out infinite alternate;
+    transform: translateY(0); /* No vertical shift */
+  }
+  
+  .cloud-layer-3 {
+    top: 52%; /* Slightly below center */
+    animation: driftClouds 35s ease-in-out infinite alternate;
+    transform: translateY(10px); /* Slight downward shift for stagger */
+  }
+  
+  .cloud-layer-4 {
+    top: 54%; /* Lower */
+    animation: driftClouds 40s ease-in-out infinite alternate;
+    transform: translateY(-10px); /* Slight upward shift for stagger */
+    z-index: 5
+  }
+  
