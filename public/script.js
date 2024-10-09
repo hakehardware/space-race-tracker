@@ -1,25 +1,36 @@
 // script.js
 
-let heightPercent = 0;
-
-function updateRocketPosition() {
-  const rocket = document.querySelector('.rocket');
-  
-  // Convert the percentage into a pixel-based translation (rocket moves upwards)
-  const translateY = -(heightPercent / 100) * window.innerHeight;
-  rocket.style.transform = `translateY(${translateY}px)`;
+async function fetchSpacePledged() {
+    try {
+        const response = await fetch('/api/space-pledge');
+        const data = await response.json();
+        const bytes = BigInt(data.spacePledged);
+        const pib = bytesToPiB(bytes);
+        updateThermometer(pib);
+      } catch (error) {
+        console.error('Error fetching spacePledged:', error);
+      }
 }
 
-function simulateRocketClimb() {
-  if (heightPercent < 100) {
-    heightPercent += 1;
-    updateRocketPosition();
-  } else {
-    clearInterval(climbInterval);
-  }
+function bytesToPiB(bytes) {
+    const divisor = BigInt(1024 ** 5);
+    const pib = Number(bytes) / Number(divisor);
+    return pib.toFixed(3); // Ensure 3 decimal places for precision
 }
 
-const climbInterval = setInterval(simulateRocketClimb, 1000);
+function updateThermometer(pib) {
+    const maxPiB = 20;
+    const percentage = Math.min((pib / maxPiB) * 100, 100);
+
+    const rocket = document.querySelector('.rocket');
+    const translateY = -(percentage / 100) * window.innerHeight;
+
+    rocket.style.transform = `translateY(${translateY}px)`;
+}
+
+
+climbInterval = setInterval(fetchSpacePledged, 1000);
+fetchSpacePledged();
 
 // Add stars to the background, restricted to the top 20% of the viewport
 const starsContainer = document.createElement('div');
@@ -35,3 +46,5 @@ for (let i = 0; i < numStars; i++) {
   star.style.left = `${Math.random() * 100}vw`; // Random horizontal position
   starsContainer.appendChild(star);
 }
+
+
