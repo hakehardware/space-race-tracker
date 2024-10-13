@@ -159,4 +159,79 @@
     transform: translateY(-10px); /* Slight upward shift for stagger */
     z-index: 5
   }
+
+/* Space Pledged Text with Transparent Background */
+.space-pledged {
+    position: absolute;
+    bottom: 0%;
+    left: 25px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px; /* Add padding for spacing around the text */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    border-radius: 5px; /* Slightly rounded corners */
+    z-index: 5; /* Ensure it's on top of other elements */
+    transition: height 0.5s ease; /* Smoothly animate the progress */
+  }
+  
+/* Static banner background */
+.space-race-banner {
+    position: fixed;
+    top: 200px; /* You can adjust this to position it higher or lower */
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust height if necessary */
+    background-color: rgba(0, 0, 0, 0.7); /* Black tinted background */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* On top of other elements */
+    overflow: hidden; /* Ensure the text scrolls inside the banner */
+  }
+  
+  /* Scrolling text */
+  .banner-text {
+    position: absolute;
+    white-space: nowrap; /* Prevent line breaks */
+    font-size: 30px;
+    color: #ffffff; /* White text */
+    font-weight: bold;
+    animation: scrollText 10s linear infinite; /* Animation that scrolls the text */
+  }
+  
+  /* Animation for scrolling text from right to left */
+  @keyframes scrollText {
+    0% {
+      transform: translateX(100%); /* Start off-screen on the right */
+    }
+    100% {
+      transform: translateX(-100%); /* Move completely off-screen to the left */
+    }
+  }
+  
+
+/* Vertical Progress Bar Container */
+.vertical-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; /* 20px wide */
+    height: 100vh; /* Full height of the viewport */
+    background-color: rgba(255, 255, 255, 0.2); /* Light background for the container */
+    z-index: 5; /* Ensure it appears on top of other elements */
+    display: flex; /* Flexbox to align the progress bar */
+    align-items: flex-end; /* Align the progress bar to the bottom */
+    border-radius: 2px;
+  }
+  
+  /* Actual vertical progress bar */
+  .vertical-progress-bar {
+    width: 100%;
+    height: 0%; /* Start at 0% height */
+    background-color: #5f68b9; /* Green progress color */
+    transition: height 0.5s ease; /* Smoothly animate the progress */
+    transform-origin: bottom; /* Start filling from the bottom */
+  }
+  
   
